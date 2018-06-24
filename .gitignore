@@ -22,6 +22,7 @@ wheels/
 *.egg
 MANIFEST
 *.idea
+transcript/
 
 # Unit test / coverage reports
 htmlcov/
