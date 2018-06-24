@@ -9,6 +9,10 @@
         <title>WAM Calculator</title>
     </head>
     <body>
+        <form action="/" method="post" enctype="multipart/form-data">
+            <input type="file" name="uploaded_file" accept=".csv, .xlsx, .xls, .pdf">
+            <input type="submit">
+        </form>
         Hello, your WAM is {{data['WAM']}}
     </body>
 </html>
