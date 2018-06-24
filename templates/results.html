@@ -9,14 +9,8 @@
         <title>WAM Calculator</title>
     </head>
     <body>
-        <h1>USYD WAM Calculator</h1>
-        <p>Hello! Start by uploading a copy of your transcript. This can be either a .pdf export from Sydney Student, or a .csv, .xlsx, .xls file. Don't worry, your personal details and marks aren't stored anywhere after this session. </p>
-
-        <form action="{{ url_for('results') }}" method="post" enctype="multipart/form-data">
-            <input type="file" name="uploaded_file" accept=".csv, .xlsx, .xls, .pdf">
-            <input type="submit">
-        </form>
-        
+        <h1><a href="/">USYD WAM Calculator</a></h1>
+        <p>Your WAM is {{data['WAM']}}</p>
     </body>
 </html>
 

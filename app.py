@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from calc import CSVParser
+from calc import Parser
 import pandas as pd
 
 
@@ -7,17 +7,18 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    data = {'WAM': 85.345}
-    return render_template("index.html", data=data)
+    return render_template("index.html")
 
-@app.route("/", methods=['POST'])
-def upload():
+@app.route("/results", methods=['POST'])
+def results():
     file = request.files.get('uploaded_file')
+    if file is None:
+        return index()
     data = calc_wam(file)
-    return render_template("index.html", data=data)
+    return render_template("results.html", data=data)
 
 def calc_wam(file):
-    parser = CSVParser()
+    parser = Parser()
     parser.read_transcript(file)
     return {'WAM': parser.calc_wam()}
 

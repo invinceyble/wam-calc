@@ -1,2 +1,4 @@
-tabula-py
-pandas
+Flask==0.12.2
+gunicorn==19.8.1
+pandas==0.22.0
+tabula-py==1.2.0

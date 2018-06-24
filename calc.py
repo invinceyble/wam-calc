@@ -5,13 +5,13 @@ import pandas as pd
 from objects import Subject, Transcript
 import tabula
 
-class CSVParser:
+class Parser:
     def __init__(self):
         self.transcript = Transcript()
         self.failed_rows = []
 
     def read_transcript(self, filepath):
-        df = pd.read_csv(filepath, na_filter=False)
+        df = self.get_df(filepath)
         for row in df.iterrows():
             row = row[1]
             try:
@@ -28,6 +28,16 @@ class CSVParser:
             except:
                 self.failed_rows.append(row)
                 continue
+
+    def get_df(self, filepath):
+        file_type = str(filepath.filename).split('.')[1].lower()
+        if file_type == 'csv':
+            return pd.read_csv(filepath, na_filter=False)
+        elif file_type == 'xlsx':
+            return pd.read_excel(filepath)
+        elif file_type == 'pdf':
+            filepath.save('temp.pdf')
+            return tabula.read_pdf('temp.pdf', pages='all')
 
     def calc_wam(self):
         return self.transcript.get_wam()
@@ -50,6 +60,6 @@ if __name__ == '__main__':
         tabula.convert_into(test_file, "transcript/pdfconvert.csv", output_format='csv', pages='all', silent=True)
         test_file = "transcript/pdfconvert.csv"
 
-    parser = CSVParser()
+    parser = Parser()
     parser.read_transcript(test_file)
     print(parser.calc_wam())
