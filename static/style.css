@@ -1,0 +1,13 @@
+ * {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'HelveticaNeue', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+body{
+  background-color: rgb(247, 247, 247);
+}
+section {
+  width: 720px;
+  margin: 64px auto;
+}
