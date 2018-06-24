@@ -9,26 +9,25 @@ class CSVParser:
     def __init__(self):
         self.transcript = Transcript()
         self.failed_rows = []
-    
-    def read_transcript(self, filepath):
-        with open(filepath) as f:
-            reader = csv.reader(f)
-            next(reader) # skip header
-            for row in reader:
-                try:
-                    year = row[0]
-                    session = row[1]
-                    uos_code = row[2]
-                    uos_name = row[3]
-                    mark = int(float(row[4]))
-                    # grade = row[5]
-                    credit_points = int(row[6])
 
-                    new_subject = Subject(year, session, uos_code, uos_name, mark, credit_points)
-                    self.transcript.add_subject(new_subject)
-                except:
-                    self.failed_rows.append(row)
-                    continue
+    def read_transcript(self, filepath):
+        df = pd.read_csv(filepath, na_filter=False)
+        for row in df.iterrows():
+            row = row[1]
+            try:
+                year = row[0]
+                session = row[1]
+                uos_code = row[2]
+                uos_name = row[3]
+                mark = int(float(row[4]))
+                # grade = row[5]
+                credit_points = int(row[6])
+
+                new_subject = Subject(year, session, uos_code, uos_name, mark, credit_points)
+                self.transcript.add_subject(new_subject)
+            except:
+                self.failed_rows.append(row)
+                continue
 
     def calc_wam(self):
         return self.transcript.get_wam()
