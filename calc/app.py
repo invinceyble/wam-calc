@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request
-from calc import Parser
+from parser import Parser
 import pandas as pd
-
 
 app = Flask(__name__)
 
@@ -23,4 +22,4 @@ def calc_wam(file):
     return {'WAM': parser.calc_wam()}
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
