@@ -20,7 +20,24 @@ class Parser:
                 uos_code = row[2]
                 uos_name = row[3]
                 mark = int(float(row[4]))
-                # grade = row[5]
+                credit_points = int(row[6])
+
+                new_subject = Subject(year, session, uos_code, uos_name, mark, credit_points)
+                self.transcript.add_subject(new_subject)
+            except:
+                self.failed_rows.append(row)
+                continue
+
+    def read_text(self, text):
+        transcript = text.split('\n')
+        transcript = [row.split('\t') for row in transcript]
+        for row in transcript:
+            try:
+                year = row[0]
+                session = row[1]
+                uos_code = row[2]
+                uos_name = row[3]
+                mark = int(float(row[4]))
                 credit_points = int(row[6])
 
                 new_subject = Subject(year, session, uos_code, uos_name, mark, credit_points)
@@ -41,9 +58,6 @@ class Parser:
 
     def calc_wam(self):
         return self.transcript.get_wam()
-
-
-
 
 if __name__ == '__main__':
     

@@ -14,6 +14,9 @@ class Transcript:
             total_credits += each.get_credit_points()
             total_marks += each.get_mark() * each.get_credit_points()
 
+        if total_credits == 0:
+            return 0
+
         wam = total_marks / total_credits
         return wam
 
