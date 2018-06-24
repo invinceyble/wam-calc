@@ -5,10 +5,6 @@ import pandas as pd
 from objects import Subject, Transcript
 import tabula
 
-
-class PDFParser:
-    pass
-
 class CSVParser:
     def __init__(self):
         self.transcript = Transcript()
@@ -41,15 +37,7 @@ class CSVParser:
 
 
 if __name__ == '__main__':
-    # df = read_pdf("/Users/vincey/Documents/repos/wam-calc/transcript/sample.pdf", pages='all', silent=False)
-    # print(df) 
-
-    # tabula.convert_into("/Users/vincey/Documents/repos/wam-calc/transcript/sample.pdf", \
-    #                     "/Users/vincey/Documents/repos/wam-calc/transcript/pdfsample.csv",
-    #                     output_format='csv', pages='all')
-
-
-
+    
     if len(sys.argv) < 2:
         print("No file given in command line, using sample.csv instead.")
         test_file = "/Users/vincey/Documents/repos/wam-calc/transcript/sample.csv"
