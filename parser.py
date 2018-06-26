@@ -1,5 +1,6 @@
 import csv
 import sys
+import os
 
 import pandas as pd
 from objects import Subject, Transcript
@@ -45,16 +46,18 @@ class Parser:
             except:
                 self.failed_rows.append(row)
                 continue
-
+    
     def get_df(self, filepath):
         file_type = str(filepath.filename).split('.')[1].lower()
         if file_type == 'csv':
             return pd.read_csv(filepath, na_filter=False)
-        elif file_type == 'xlsx':
+        elif file_type in ['xlsx', 'xls']:
             return pd.read_excel(filepath)
         elif file_type == 'pdf':
             filepath.save('temp.pdf')
-            return tabula.read_pdf('temp.pdf', pages='all')
+            df = tabula.read_pdf('temp.pdf', pages='all')
+            os.remove("temp.pdf")
+            return df
 
     def calc_wam(self):
         return self.transcript.get_wam()
