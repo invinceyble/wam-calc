@@ -4,9 +4,21 @@ class Transcript:
         self.subjects = []
 
     def add_subject(self, subject):
+        """Add a subject to self.subjects
+        
+        Arguments:
+            subject {Subject}
+        """
+
         self.subjects.append(subject)
 
     def get_wam(self):
+        """Calculates your WAM (Weighted Average Mark) based on all the subjects in self.subjects
+        
+        Returns:
+            float -- WAM
+        """
+
         total_credits = 0
         total_marks = 0
 

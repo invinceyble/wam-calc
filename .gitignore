@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Distribution / packaging
+.idea/
+
 # Data files
 transcript/
 *.pdf
@@ -30,7 +33,7 @@ instance/
 .python-version
 
 # VS Code
-.vscode
+.vscode/
 
 # Environments
 .env

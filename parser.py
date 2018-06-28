@@ -12,18 +12,36 @@ class Parser:
         self.failed_rows = []
 
     def read_transcript(self, filepath):
+        """Parse input when given as a file
+        
+        Arguments:
+            filepath {FileStorage} -- location of file as given by Flask
+        """
+
         df = self.get_df(filepath)
         for row in df.iterrows():
             row = row[1]
             self._add_row_if_valid(row)
 
     def read_text(self, text):
+        """Parse input when given as text
+        
+        Arguments:
+            text {String} -- Tab separated lines of strings (as copied from Sydney Student)
+        """
+
         transcript = text.split('\n')
         transcript = [row.split('\t') for row in transcript]
         for row in transcript:
             self._add_row_if_valid(row)
     
     def _add_row_if_valid(self, row):
+        """Add subject information to self.transcript if valid data
+        
+        Arguments:
+            row {list} -- list of data that is read
+        """
+
         try:
             year = row[0]
             session = row[1]
@@ -38,6 +56,15 @@ class Parser:
             self.failed_rows.append(row)
 
     def get_df(self, filepath):
+        """Determine the file type, then parse the transcript file into a DataFrame
+        
+        Arguments:
+            filepath {FileStorage} -- location of file as given by Flask
+        
+        Returns:
+            DataFrame -- of the transcript data
+        """
+
         file_type = str(filepath.filename).split('.')[1].lower()
         if file_type == 'csv':
             return pd.read_csv(filepath, na_filter=False)
