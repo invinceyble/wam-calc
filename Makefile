@@ -12,7 +12,7 @@ setup:
 	$(ENV)/bin/pip install -Ur requirements.txt
 
 run:
-	$(ENV)/bin/python app/app.py
+	$(ENV)/bin/python app.py
 
 clean:
 	rm -rf $(ENV)

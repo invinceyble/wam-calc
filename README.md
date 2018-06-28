@@ -8,7 +8,9 @@ If you want to parse a PDF transcript locally, you will need to install Java for
 
 First, clone the repository by inputting the following into the command line:
 
-```git clone git@github.com:invinceyble/iengage-webapp.git```
+```
+git clone git@github.com:invinceyble/wam-calc.git
+```
 
 Then, `cd` into your local copy, and run the following to install the dependencies and launch the app:
 ```
@@ -17,7 +19,9 @@ make run
 ```
 
 After you are done, clean up the files using:
-```make clean```
+```
+make clean
+```
 
 ## To Do / Possible Features
 - Build front end properly
